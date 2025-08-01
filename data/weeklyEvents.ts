@@ -1,0 +1,32 @@
+export const weeklyEvents = {
+  monday: [
+    {
+      id: 'w1',
+      title: 'Monday Night Trivia',
+      brewery: 'Hoppy Valley Brewing',
+      breweryLocation: 'Downtown Portland',
+      dayOfWeek: 'Monday',
+      time: '7:00 PM - 9:00 PM',
+      description: 'Test your knowledge every Monday night! Teams of up to 6 people compete for brewery gift cards and bragging rights. Free to play, just buy drinks!',
+      image: 'https://images.pexels.com/photos/1089932/pexels-photo-1089932.jpeg',
+      type: 'Weekly Event',
+    },
+    {
+      id: 'w2',
+      title: 'Manic Monday Beer & Burger Special',
+      brewery: 'Mountain Peak Brewery',
+      breweryLocation: 'Bend, OR',
+      dayOfWeek: 'Monday',
+      time: '5:00 PM - 9:00 PM',
+      description: 'Beat the Monday blues with our special combo! Any burger from our kitchen menu paired with a pint of your choice for just $15. Available every Monday.',
+      image: 'https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg',
+      type: 'Weekly Event',
+    },
+  ],
+  tuesday: [],
+  wednesday: [],
+  thursday: [],
+  friday: [],
+  saturday: [],
+  sunday: [],
+};
