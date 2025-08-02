@@ -69,7 +69,7 @@ export default function BreweryDetailsScreen() {
           {/* Hours */}
           {brewery.hours && (
             <>
-              <Text style={styles.sectionHeader}>Hourrrrrrs</Text>
+              <Text style={styles.sectionHeader}>Hours</Text>
               <Text style={styles.sectionText}>{brewery.hours}</Text>
             </>
           )}
