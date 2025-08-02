@@ -1,5 +1,5 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -69,35 +69,35 @@ export default function BreweryDetailsScreen() {
           {/* Hours */}
           {brewery.hours && (
             <>
-              <Text style={styles.hoursHeader}>Hours</Text>
+              <Text style={styles.sectionHeader}>Hourrrrrrs</Text>
               <Text style={styles.sectionText}>{brewery.hours}</Text>
             </>
           )}
 
-          {/* Website & Social */}
+          {/* Website & Social Buttons */}
           <View style={styles.buttonRow}>
             {brewery.website && (
               <TouchableOpacity
-                style={styles.linkButton}
+                style={styles.linkButtonOutline}
                 onPress={() => Linking.openURL(brewery.website)}
               >
-                <Text style={styles.linkText}>🌐 Website</Text>
+                <Text style={styles.linkTextOutline}>🌐 Website</Text>
               </TouchableOpacity>
             )}
             {brewery.instagram && (
               <TouchableOpacity
-                style={styles.linkButton}
+                style={styles.linkButtonOutline}
                 onPress={() => Linking.openURL(brewery.instagram)}
               >
-                <Text style={styles.linkText}>📸 Instagram</Text>
+                <Text style={styles.linkTextOutline}>📷 Instagram</Text>
               </TouchableOpacity>
             )}
             {brewery.facebook && (
               <TouchableOpacity
-                style={styles.linkButton}
+                style={styles.linkButtonOutline}
                 onPress={() => Linking.openURL(brewery.facebook)}
               >
-                <Text style={styles.linkText}>📘 Facebook</Text>
+                <Text style={styles.linkTextOutline}>📘 Facebook</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -163,40 +163,37 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 12,
   },
-  hoursHeader: {
+  sectionHeader: {
     color: '#fff',
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: 12,
     marginBottom: 4,
+    marginTop: 12,
   },
   sectionText: {
     color: '#fff',
     fontSize: 16,
     marginBottom: 12,
-    lineHeight: 22,
   },
   buttonRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    gap: 8,
     marginBottom: 16,
   },
-  linkButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 2,
+  linkButtonOutline: {
     borderColor: '#93bc2d',
-    backgroundColor: 'transparent',
+    borderWidth: 2,
     paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 8,
     marginRight: 8,
     marginTop: 8,
+    backgroundColor: 'transparent',
   },
-  linkText: {
+  linkTextOutline: {
     fontWeight: 'bold',
     color: '#93bc2d',
-    fontSize: 16,
   },
   podcastButton: {
     backgroundColor: '#444',
