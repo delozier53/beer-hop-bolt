@@ -33,17 +33,7 @@ export default function BreweryDetailsScreen() {
       .eq('id', id)
       .single();
 
-    if (!error) {
-      // Parse slideshow_images if it's a stringified JSON array
-      if (typeof data.slideshow_images === 'string') {
-        try {
-          data.slideshow_images = JSON.parse(data.slideshow_images);
-        } catch (e) {
-          data.slideshow_images = [];
-        }
-      }
-      setBrewery(data);
-    }
+    if (!error) setBrewery(data);
   }
 
   if (!brewery) {
@@ -79,7 +69,7 @@ export default function BreweryDetailsScreen() {
           {/* Hours */}
           {brewery.hours && (
             <>
-              <Text style={styles.hoursLabel}>Hours:</Text>
+              <Text style={styles.hoursHeader}>Hours</Text>
               <Text style={styles.sectionText}>{brewery.hours}</Text>
             </>
           )}
@@ -89,21 +79,24 @@ export default function BreweryDetailsScreen() {
             {brewery.website && (
               <TouchableOpacity
                 style={styles.linkButton}
-                onPress={() => Linking.openURL(brewery.website)}>
+                onPress={() => Linking.openURL(brewery.website)}
+              >
                 <Text style={styles.linkText}>🌐 Website</Text>
               </TouchableOpacity>
             )}
             {brewery.instagram && (
               <TouchableOpacity
                 style={styles.linkButton}
-                onPress={() => Linking.openURL(brewery.instagram)}>
-                <Text style={styles.linkText}>📷 Instagram</Text>
+                onPress={() => Linking.openURL(brewery.instagram)}
+              >
+                <Text style={styles.linkText}>📸 Instagram</Text>
               </TouchableOpacity>
             )}
             {brewery.facebook && (
               <TouchableOpacity
                 style={styles.linkButton}
-                onPress={() => Linking.openURL(brewery.facebook)}>
+                onPress={() => Linking.openURL(brewery.facebook)}
+              >
                 <Text style={styles.linkText}>📘 Facebook</Text>
               </TouchableOpacity>
             )}
@@ -113,7 +106,8 @@ export default function BreweryDetailsScreen() {
           {brewery.podcast_url && (
             <TouchableOpacity
               style={styles.podcastButton}
-              onPress={() => Linking.openURL(brewery.podcast_url)}>
+              onPress={() => Linking.openURL(brewery.podcast_url)}
+            >
               <Text style={styles.podcastText}>🎧 Listen to Podcast</Text>
             </TouchableOpacity>
           )}
@@ -169,25 +163,30 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 12,
   },
-  hoursLabel: {
+  hoursHeader: {
     color: '#fff',
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 20,
+    fontWeight: 'bold',
     marginTop: 12,
+    marginBottom: 4,
   },
   sectionText: {
     color: '#fff',
     fontSize: 16,
     marginBottom: 12,
+    lineHeight: 22,
   },
   buttonRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
     marginBottom: 16,
   },
   linkButton: {
-    backgroundColor: '#93bc2d',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#93bc2d',
+    backgroundColor: 'transparent',
     paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 8,
@@ -196,7 +195,8 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontWeight: 'bold',
-    color: '#000',
+    color: '#93bc2d',
+    fontSize: 16,
   },
   podcastButton: {
     backgroundColor: '#444',
@@ -214,7 +214,6 @@ const styles = StyleSheet.create({
     width: screenWidth,
     height: 200,
     resizeMode: 'cover',
-    marginVertical: 10,
   },
   loading: {
     color: '#fff',
