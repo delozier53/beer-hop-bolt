@@ -1,5 +1,5 @@
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -10,7 +10,6 @@ import {
   Linking,
   Dimensions,
 } from 'react-native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { supabase } from '@/lib/supabase';
 import { ChevronLeft } from 'lucide-react-native';
@@ -34,7 +33,17 @@ export default function BreweryDetailsScreen() {
       .eq('id', id)
       .single();
 
-    if (!error) setBrewery(data);
+    if (!error) {
+      // Parse slideshow_images if it's a stringified JSON array
+      if (typeof data.slideshow_images === 'string') {
+        try {
+          data.slideshow_images = JSON.parse(data.slideshow_images);
+        } catch (e) {
+          data.slideshow_images = [];
+        }
+      }
+      setBrewery(data);
+    }
   }
 
   if (!brewery) {
@@ -69,7 +78,10 @@ export default function BreweryDetailsScreen() {
 
           {/* Hours */}
           {brewery.hours && (
-            <Text style={styles.sectionText}>Hours: {brewery.hours}</Text>
+            <>
+              <Text style={styles.hoursLabel}>Hours:</Text>
+              <Text style={styles.sectionText}>{brewery.hours}</Text>
+            </>
           )}
 
           {/* Website & Social */}
@@ -157,6 +169,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 12,
   },
+  hoursLabel: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+    marginTop: 12,
+  },
   sectionText: {
     color: '#fff',
     fontSize: 16,
@@ -196,6 +214,7 @@ const styles = StyleSheet.create({
     width: screenWidth,
     height: 200,
     resizeMode: 'cover',
+    marginVertical: 10,
   },
   loading: {
     color: '#fff',
