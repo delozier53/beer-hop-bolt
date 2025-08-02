@@ -1,5 +1,4 @@
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -45,15 +44,21 @@ export default function BreweryDetailsScreen() {
     );
   }
 
+  const images =
+    typeof brewery.slideshow_images === 'string'
+      ? JSON.parse(brewery.slideshow_images)
+      : brewery.slideshow_images;
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* Back button */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <ChevronLeft size={28} color="#fff" />
-        <Text style={styles.backText}>Back</Text>
-      </TouchableOpacity>
-
       <ScrollView>
+
+        {/* Back button */}
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+          <ChevronLeft size={28} color="#fff" />
+          <Text style={styles.backText}>Back</Text>
+        </TouchableOpacity>
+
         {/* Banner image */}
         {brewery.banner_image && (
           <Image
@@ -69,7 +74,10 @@ export default function BreweryDetailsScreen() {
 
           {/* Hours */}
           {brewery.hours && (
-            <Text style={styles.sectionText}>Hours: {brewery.hours}</Text>
+            <>
+              <Text style={styles.sectionHeader}>Hours</Text>
+              <Text style={styles.sectionText}>{brewery.hours}</Text>
+            </>
           )}
 
           {/* Website & Social */}
@@ -77,21 +85,24 @@ export default function BreweryDetailsScreen() {
             {brewery.website && (
               <TouchableOpacity
                 style={styles.linkButton}
-                onPress={() => Linking.openURL(brewery.website)}>
+                onPress={() => Linking.openURL(brewery.website)}
+              >
                 <Text style={styles.linkText}>🌐 Website</Text>
               </TouchableOpacity>
             )}
             {brewery.instagram && (
               <TouchableOpacity
                 style={styles.linkButton}
-                onPress={() => Linking.openURL(brewery.instagram)}>
+                onPress={() => Linking.openURL(brewery.instagram)}
+              >
                 <Text style={styles.linkText}>📷 Instagram</Text>
               </TouchableOpacity>
             )}
             {brewery.facebook && (
               <TouchableOpacity
                 style={styles.linkButton}
-                onPress={() => Linking.openURL(brewery.facebook)}>
+                onPress={() => Linking.openURL(brewery.facebook)}
+              >
                 <Text style={styles.linkText}>📘 Facebook</Text>
               </TouchableOpacity>
             )}
@@ -101,17 +112,18 @@ export default function BreweryDetailsScreen() {
           {brewery.podcast_url && (
             <TouchableOpacity
               style={styles.podcastButton}
-              onPress={() => Linking.openURL(brewery.podcast_url)}>
+              onPress={() => Linking.openURL(brewery.podcast_url)}
+            >
               <Text style={styles.podcastText}>🎧 Listen to Podcast</Text>
             </TouchableOpacity>
           )}
 
           {/* Image slideshow */}
-          {brewery.slideshow_images?.length > 0 && (
+          {images?.length > 0 && (
             <Carousel
               width={screenWidth}
               height={200}
-              data={brewery.slideshow_images}
+              data={images}
               scrollAnimationDuration={500}
               renderItem={({ item }) => (
                 <Image source={{ uri: item }} style={styles.slideImage} />
@@ -156,6 +168,12 @@ const styles = StyleSheet.create({
     color: '#ccc',
     fontSize: 16,
     marginBottom: 12,
+  },
+  sectionHeader: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 4,
   },
   sectionText: {
     color: '#fff',

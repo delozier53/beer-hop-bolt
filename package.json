@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "EXPO_NO_TELEMETRY=1 expo start",
+    "web": "expo start --web",
     "build:web": "expo export --platform web",
     "lint": "expo lint",
     "web": "expo start --web"
@@ -35,22 +36,27 @@
     "expo-symbols": "~0.4.3",
     "expo-system-ui": "~5.0.5",
     "expo-web-browser": "~14.1.5",
+    "geolib": "^3.3.4",
     "lucide-react-native": "^0.475.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.79.1",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "~3.17.4",
+    "react-native-reanimated-carousel": "^4.0.2",
     "react-native-safe-area-context": "5.3.0",
     "react-native-screens": "~4.10.0",
     "react-native-svg": "15.11.2",
     "react-native-url-polyfill": "^2.0.0",
     "react-native-web": "^0.20.0",
-    "react-native-webview": "13.13.5"
+    "react-native-webview": "13.13.5",
+    "react-slick": "^0.30.3",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
+    "@types/react-slick": "^0.23.13",
     "babel-plugin-module-resolver": "^5.0.2",
     "typescript": "~5.8.3"
   }
